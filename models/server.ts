@@ -1,17 +1,29 @@
-import express,{Application} from 'express';
-class Server{
+import express, { Application } from 'express';
+import useRouter from '../routes/usuarios';
+class Server {
 
     private app: Application;
-    private port:string;
+    private port: string;
+    private apiPaths = {
+        usuarios: '/api/usuarios'
+    };
 
-    constructor(){
-        this.app=express();
-        this.port=process.env.PORT||'8000';
+    constructor() {
+        this.app = express();
+        this.port = process.env.PORT || '8000';
+        
+        //Definir rutas
+        this.routes();
     }
 
-    listen(){
-        this.app.listen(this.port,()=>{
-            console.log('Servidor corriendo en puerto:'+this.port);            
+    routes() {
+        this.app.use(this.apiPaths.usuarios, useRouter);
+    }
+
+
+    listen() {
+        this.app.listen(this.port, () => {
+            console.log('Servidor corriendo en puerto:' + this.port);
         });
     }
 
