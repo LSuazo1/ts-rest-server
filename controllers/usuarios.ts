@@ -1,14 +1,16 @@
 import { Request, Response } from "express";
+import Usuario from '../models/usuario';
 
-export const getUsuarios=(req:Request,res:Response)=>{
 
-    res.json({
-        msg:'getUsuarios'
-    })
+export const getUsuarios=async(req:Request,res:Response)=>{
+
+    const usuarios=await Usuario.findAll();
+
+    res.json(usuarios);
 }
 
 
-export const getUsuario=(req:Request,res:Response)=>{
+export const getUsuario=async(req:Request,res:Response)=>{
     
     const {id}=req.params;
 
