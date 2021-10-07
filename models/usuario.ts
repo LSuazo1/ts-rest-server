@@ -11,7 +11,11 @@ const Usuario=db.define('Usuario',{
     },
     estado:{
         type:DataTypes.BOOLEAN
-    },
+    }
+    
+},{
+        tableName: 'Usuario'
+    
 });
 
 export default Usuario;
